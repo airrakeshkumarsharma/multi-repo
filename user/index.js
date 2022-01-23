@@ -1,0 +1,39 @@
+const express = require('express');
+const UserModel = require('./model/user')
+
+const app = express()
+
+// All environments variables
+const MONGODB_HOST = process.env.MONGODB_HOST
+const port = process.env.PORT || 8080;
+
+
+// Get users list from user service
+app.get("/users", (req, res) => {
+    const userData = UserModel.find({})
+    return res.statusCode(200).json(userData)
+})
+
+app.post("/users", (req, res) => {
+    const userData = UserModel.create(req.body)
+    return res.statusCode(201).json(userData)
+})
+
+mongoose.connect(MONGODB_HOST, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+},
+    (err) => {
+        if (err) {
+            console.error('FAILED TO CONNECT TO MONGODB');
+            console.error(err);
+        } else {
+            console.log('CONNECTED TO MONGODB');
+            app.listen(port);
+        }
+    }
+);
+
+app.listen(port, () => {
+    console.info("User app is running on port ", port);
+})
