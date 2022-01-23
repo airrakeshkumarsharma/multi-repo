@@ -1,4 +1,5 @@
 const express = require('express');
+const mongoose = require('mongoose');
 const UserModel = require('./model/user')
 
 const app = express()
@@ -19,7 +20,7 @@ app.post("/users", (req, res) => {
     return res.statusCode(201).json(userData)
 })
 
-mongoose.connect(MONGODB_HOST, {
+mongoose.connect(`mongodb://${MONGODB_HOST}`, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 },
