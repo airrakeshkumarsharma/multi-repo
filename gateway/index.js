@@ -11,12 +11,12 @@ const port = process.env.PORT || 3000;
 // Get users list from user service
 app.get("/users", (req, res) => {
     const userData = axios.get(`${USER_HOST}/users`)
-    return res.statusCode(200).json(userData)
+    return res.send(userData)
 })
 
 app.post("/users", (req, res) => {
     const userData = axios.post(`${USER_HOST}/users`, { data:  req.body })
-    return res.statusCode(201).json(userData)
+    return res.send(userData)
 })
 
 
