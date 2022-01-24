@@ -12,12 +12,12 @@ const port = process.env.PORT || 8080;
 // Get users list from user service
 app.get("/users", (req, res) => {
     const userData = UserModel.find({})
-    return res.statusCode(200).json(userData)
+    return res.send(userData)
 })
 
 app.post("/users", (req, res) => {
     const userData = UserModel.create(req.body)
-    return res.statusCode(201).json(userData)
+    return res.send(userData)
 })
 
 mongoose.connect(`mongodb://${MONGODB_HOST}`, {
