@@ -10,17 +10,18 @@ const port = process.env.PORT || 8080;
 
 
 // Get users list from user service
-app.get("/users", (req, res) => {
-    const userData = UserModel.find({})
+app.get("/users", async (req, res) => {
+    console.log("request resolved")
+    const userData = await UserModel.find({})
     return res.send(userData)
 })
 
-app.post("/users", (req, res) => {
-    const userData = UserModel.create(req.body)
+app.post("/users", async (req, res) => {
+    const userData = await UserModel.create(req.body)
     return res.send(userData)
 })
 
-mongoose.connect(`mongodb://${MONGODB_HOST}`, {
+mongoose.connect(`mongodb://${MONGODB_HOST}/user`, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 },
@@ -30,11 +31,9 @@ mongoose.connect(`mongodb://${MONGODB_HOST}`, {
             console.error(err);
         } else {
             console.log('CONNECTED TO MONGODB');
-            app.listen(port);
+            app.listen(port, () => {
+                console.log('Application running on port: ', port);
+            });
         }
     }
 );
-
-app.listen(port, () => {
-    console.info("User app is running on port ", port);
-})
