@@ -19,7 +19,7 @@ COPY . .
 EXPOSE 3000
 
 # Add env varialbes which are required
-ENV USER_HOST=host.docker.internal:8080
+ENV USER_HOST=host.docker.internal:8000
 ENV PORT=3000
 
 # Finally start our application
