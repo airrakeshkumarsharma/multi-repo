@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment # Kind of Kubernetes file
+
+# Define metadata of deployment file
+metadata:
+  name: user-deployment
+  labels:
+    app: user
+
+# Specifications of deployment file
+spec:
+  replicas: 1 # How many replicas are we trying to create.
+  selector:
+    matchLabels:
+      app: user
+  template:
+    metadata:
+      labels:
+        app: user
+    
+    # Specification of image. Docker image information
+    spec:
+      containers:
+      - name: user
+        image: <>
+        ports:
+        - containerPort: 8000
+        env:
+          - name: MONGODB_HOST
+            value: "mongodb-service.default"

@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment # Kind of Kubernetes file
+
+# Define metadata of deployment file
+metadata:
+  name: mongodb-deployment
+  labels:
+    app: mongodb
+
+# Specifications of deployment file
+spec:
+  replicas: 1 # How many replicas are we trying to create.
+  selector:
+    matchLabels:
+      app: mongodb
+  template:
+    metadata:
+      labels:
+        app: mongodb
+    
+    # Specification of image. Docker image information
+    spec:
+      containers:
+      - name: mongodb
+        image: mongodb

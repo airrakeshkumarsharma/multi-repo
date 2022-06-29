@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment # Kind of Kubernetes file
+
+# Define metadata of deployment file
+metadata:
+  name: gateway-deployment
+  labels:
+    app: gateway
+
+# Specifications of deployment file
+spec:
+  replicas: 1 # How many replicas are we trying to create.
+  selector:
+    matchLabels:
+      app: gateway
+  template:
+    metadata:
+      labels:
+        app: gateway
+    
+    # Specification of image. Docker image information
+    spec:
+      containers:
+      - name: gateway
+        image: <>
+        ports:
+        - containerPort: 8000
+        env:
+          - name: MONGODB_HOST
+            value: "gateway-service.default:8001"  # This is provided like this formate <nameOfService>.<namespace>:<port>

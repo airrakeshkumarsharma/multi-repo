@@ -1,0 +1,15 @@
+apiVersion: v1
+# Kind of Kubernetes file
+kind: Service
+
+# Metadata of service file
+metadata:
+  name: mongodb-service
+spec:
+  type: ClusterIP
+  ports:
+    - protocol:
+      port: 27017
+      targetPort: 27017
+  selector:
+    app: mongodb
