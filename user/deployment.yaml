@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
       - name: user
-        image: <>
+        image: aiirakesh/user:latest  # Url of docker registry of user
         ports:
         - containerPort: 8000
         env:
