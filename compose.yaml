@@ -15,7 +15,7 @@ services:
       context: user # context to specify folder name where docker file is resides
       dockerfile: ./Dockerfile # name of docker file
     ports: # which port need to expose and connect
-      - "8080:8080"
+      - "8080:8000"
     container_name: user # name of container
     environment: # pass environment variable to user service
       - MONGODB_HOST=host.docker.internal:27017
@@ -28,7 +28,7 @@ services:
       context: gateway # context to specify folder name where docker file is resides
       dockerfile: ./Dockerfile # name of docker file
     environment: # pass environment variable to user service
-      - USER_HOST=host.docker.internal:8000
+      - USER_HOST=host.docker.internal:8080
     ports: # which port need to expose and connect
       - "3000:3000"
     container_name: gateway # name of container
