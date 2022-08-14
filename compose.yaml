@@ -1,0 +1,37 @@
+version: "3.9"
+
+# From here service and docker commands starts
+services:
+  # Mongodb Container Info and commnads
+  mongodb:  # name of service. This will be used by docker compose only
+    image: mongo  # name of image. This will directly pull from container registry
+    ports:
+      - "27017:27017" # which port need to expose and connect
+    container_name: mongodb # name of container
+
+  # User Container Info and commnads
+  user:  # User service. This will be used by docker compose only
+    build: # Build file path info
+      context: user # context to specify folder name where docker file is resides
+      dockerfile: ./Dockerfile # name of docker file
+    ports: # which port need to expose and connect
+      - "8080:8080"
+    container_name: user # name of container
+    environment: # pass environment variable to user service
+      - MONGODB_HOST=host.docker.internal:27017
+    depends_on: # dependency for user service. Specify service will start first.
+      - mongodb
+
+  # Gateway Container Info and commnads
+  gateway: # User service. This will be used by docker compose only
+    build: # Build file path info
+      context: gateway # context to specify folder name where docker file is resides
+      dockerfile: ./Dockerfile # name of docker file
+    environment: # pass environment variable to user service
+      - USER_HOST=host.docker.internal:8000
+    ports: # which port need to expose and connect
+      - "3000:3000"
+    container_name: gateway # name of container
+    depends_on: # dependenies for gateway service. Specify service will start first.
+      - mongodb
+      - user
