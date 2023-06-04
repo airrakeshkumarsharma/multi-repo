@@ -19,7 +19,7 @@ COPY . .
 EXPOSE 8000
 
 # Add env varialbes which are required
-ENV MONGODB_HOST=host.docker.internal:27017
+ENV MONGODB_HOST=locahost:27017
 ENV PORT=8000
 
 # Finally start our application
