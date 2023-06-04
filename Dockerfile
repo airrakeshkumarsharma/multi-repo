@@ -16,11 +16,11 @@ COPY . .
 
 # If you see our application is running on 8080. So expose same port here also.
 # NOTE: In future articles we will se how to paas environment variables from docker to application
-EXPOSE 3000
+EXPOSE 8000
 
 # Add env varialbes which are required
-ENV USER_HOST=host.docker.internal:8000
-ENV PORT=3000
+ENV MONGODB_HOST=locahost:27017
+ENV PORT=8000
 
 # Finally start our application
 CMD ["node", "index.js"]
