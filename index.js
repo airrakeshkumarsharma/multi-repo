@@ -5,7 +5,7 @@ const UserModel = require('./model/user')
 const app = express()
 
 // All environments variables
-const MONGODB_HOST = process.env.MONGODB_HOST
+const MONGODB_HOST = "mongodb+srv://efm:aSE253nD3Gw8pE8X@cluster0.9kl2w.mongodb.net/test?retryWrites=true&w=majority"
 const port = process.env.PORT || 8080;
 
 
