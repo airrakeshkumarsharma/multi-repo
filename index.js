@@ -21,7 +21,7 @@ app.post("/users", async (req, res) => {
     return res.send(userData)
 })
 
-mongoose.connect(`mongodb://${MONGODB_HOST}/user`, {
+mongoose.connect(MONGODB_HOST, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 },
