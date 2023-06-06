@@ -1,27 +1,27 @@
 version: '3.8'
 services:
-  mongodb:
-    image: mongo
-    restart: always
-    ports:
-      - 27017:27017
-    volumes:
-      - mongodb_data:/data/db
+  # mongodb:
+  #   image: mongo
+  #   restart: always
+  #   ports:
+  #     - 27017:27017
+  #   volumes:
+  #     - mongodb_data:/data/db
 
   user-service:
     image: aiirakesh/user:latest
     pull_policy: always
     ports:
       - 8080:8080
-    depends_on:
-      - mongodb
 
-  nginx:
-    context: ./nginx
-    build: dockerfile
-    ports:
-      - "80:80"
-    depends_on:
-      - user-service
+  # nginx:
+  #   image: nginx_local:latest
+  #   build:
+  #     context: nginx
+  #     dockerfile: ./dockerfile
+  #   ports:
+  #     - "80:80"
+  #   depends_on:
+  #     - user-service
 volumes:
   mongodb_data:

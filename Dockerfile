@@ -19,7 +19,7 @@ COPY . .
 EXPOSE 8000
 
 # Add env varialbes which are required
-ENV MONGODB_HOST=locahost:27017
+ENV MONGODB_HOST=mongodb+srv://efm:IiwmPpy4pGiy9xq9@cluster0.9kl2w.mongodb.net/sample
 ENV PORT=8000
 
 # Finally start our application
