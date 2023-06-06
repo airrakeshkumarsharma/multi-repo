@@ -9,7 +9,7 @@ services:
       - mongodb_data:/data/db
 
   user-service:
-    image: your-user-service-image:latest
+    image: aiirakesh/user:latest
     pull_policy: always
     ports:
       - 8080:8080
