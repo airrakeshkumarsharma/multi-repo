@@ -21,6 +21,10 @@ app.post("/users", async (req, res) => {
     return res.send(userData)
 })
 
+app.get("/api", (req, res) => {
+    res.send("Hello world")
+})
+
 mongoose.connect(MONGODB_HOST, {
     useNewUrlParser: true,
     useUnifiedTopology: true,

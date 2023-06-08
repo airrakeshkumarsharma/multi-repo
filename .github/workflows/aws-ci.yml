@@ -51,14 +51,4 @@ jobs:
             docker pull aiirakesh/user:latest
             cd /home/ubuntu/projects/multi-repo
             sudo docker compose up -d
-      
-      # - name: Run Docker container on EC2 instance
-      #   uses: appleboy/ssh-action@master
-      #   with:
-      #     host: 13.235.77.23
-      #     username: ubuntu
-      #     key: ${{ secrets.EC2_PRIVATE_KEY }}
-      #     script: |
-      #       cd /home/ubuntu/projects/multi-repo
-      #       sudo docker compose up -d
 
