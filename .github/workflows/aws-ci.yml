@@ -28,3 +28,37 @@ jobs:
           context: .
           push: true
           tags: aiirakesh/user:latest
+      
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: your-aws-region
+      
+      - name: Install AWS CLI
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y awscli
+
+      - name: SSH into EC2 instance, pull and run Docker image
+        uses: appleboy/ssh-action@master
+        with:
+          host: 13.235.77.23
+          username: ubuntu
+          key: ${{ secrets.EC2_PRIVATE_KEY }}
+          script: |
+            docker pull aiirakesh/user:latest
+            cd /home/ubuntu/projects/multi-repo
+            sudo docker compose up -d
+      
+      # - name: Run Docker container on EC2 instance
+      #   uses: appleboy/ssh-action@master
+      #   with:
+      #     host: 13.235.77.23
+      #     username: ubuntu
+      #     key: ${{ secrets.EC2_PRIVATE_KEY }}
+      #     script: |
+      #       cd /home/ubuntu/projects/multi-repo
+      #       sudo docker compose up -d
+
