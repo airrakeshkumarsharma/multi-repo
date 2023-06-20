@@ -52,3 +52,21 @@ jobs:
             cd /home/ubuntu/projects/multi-repo
             sudo docker compose up -d
 
+  test:
+    runs-on: ubuntu-latest
+
+    steps: 
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install Newman
+        run: npm install -g newman
+
+      - name: Run API Tests
+        run: newman run /collection.json -e /environment.json        
+
