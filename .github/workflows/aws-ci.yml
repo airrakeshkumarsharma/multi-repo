@@ -56,4 +56,4 @@ jobs:
         run: npm install -g newman
 
       - name: Run API Tests
-        run: newman run ./collection.json -e ./environment.json
+        run: newman run ./collection.json
